@@ -12,4 +12,5 @@ activeMQ-all的依赖包
     + *Session* 只有调用 *commit()* 方法才能发送对应的队列到 ActiveMQ上。
 2. Consumer类进行 从ActiveMQ消费数据的功能。
     + ***注意*** 获取消息之前，需要执行 *Connection.Start()* 方法。
-    + 调用 *Consumer.recieve()* 获取数据。 
+    + 调用 *Consumer.recieve()* 获取数据。
+    + *Recieve* 对象是 *Message*  接口的一个实现，一般建议将其转换为 *TextMessage* 进行操作
