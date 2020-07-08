@@ -17,6 +17,7 @@ public class Consumer {
         MessageConsumer consumer = null;
         try {
              connection = factory.createConnection();
+             //不要忘记 消费接收需要调用Connection.Start()
              connection.start();
             session = connection.createSession(true,Session.AUTO_ACKNOWLEDGE);
             destination = session.createQueue("Mail Send");
