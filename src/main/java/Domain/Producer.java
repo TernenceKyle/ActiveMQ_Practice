@@ -19,11 +19,15 @@ public class Producer {
             factory = new ActiveMQConnectionFactory(USERNAME,PASSWORD,BROKEURL);
             conn = factory.createConnection();
             session = conn.createSession(true,Session.AUTO_ACKNOWLEDGE);
-            destination = session.createQueue("Mail Send");
+            destination = session.createTopic("News");
+//            destination = session.createQueue("Mail Send");
             producer = session.createProducer(destination);
-            for (int i = 0; i < 5; i++) {
-                producer.send(destination,session.createTextMessage("Message - "+i+" : OJBK"));
-            }
+//            for (int i = 0; i < 5; i++) {
+//                producer.send(destination,session.createTextMessage("Message - "+i+" : OJBK"));
+//            }
+//            for (int i = 0; i < 5; i++) {
+                producer.send(destination,session.createTextMessage("News for Subscriber -  : Notification"));
+//            }
             session.commit();
         }catch (Exception e)
         {
