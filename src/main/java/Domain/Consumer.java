@@ -22,28 +22,16 @@ public class Consumer {
             destination = session.createQueue("Mail Send");
             consumer = session.createConsumer(destination);
             for (int i = 0; i < 2; i++) {
-//                TextMessage receive = (TextMessage)consumer.receive();
-//                System.out.println(receive.getText());
-                //第二种方式 MQListener
-                consumer.setMessageListener(new MessageListener() {
-                    @Override
-                    public void onMessage(Message message) {
-                        TextMessage tm = (TextMessage)message;
-                        try {
-                            System.out.println(tm.getText());
-                        } catch (JMSException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                TextMessage receive = (TextMessage)consumer.receive();
+                System.out.println(receive.getText());
             }
-//            session.commit();
+            session.commit();
         } catch (JMSException e) {
             e.printStackTrace();
         }finally {
-//            consumer.close();
-//            session.close();
-//            connection.close();
+            consumer.close();
+            session.close();
+            connection.close();
         }
     }
 }
