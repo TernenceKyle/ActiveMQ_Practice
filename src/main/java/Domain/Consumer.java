@@ -22,7 +22,8 @@ public class Consumer {
             destination = session.createQueue("Mail Send");
             consumer = session.createConsumer(destination);
             for (int i = 0; i < 2; i++) {
-                Message receive = consumer.receive();
+                TextMessage receive = (TextMessage)consumer.receive();
+                System.out.println(receive.getText());
             }
             session.commit();
         } catch (JMSException e) {
